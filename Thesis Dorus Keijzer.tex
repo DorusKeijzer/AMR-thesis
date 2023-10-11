@@ -1,0 +1,72 @@
+\documentclass[twocolumn]{article}
+\usepackage[style=apa,backend=biber]{biblatex}
+\addbibresource{bibby.bib} %Import the bibliography file
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+
+\title{THESIS WORKING TITLE}
+\author{Dorus Keijzer}
+\begin{document}
+\maketitle
+\section{Introduction}
+
+\subsection{Motivation}
+In the model developed by \textcite{groschwitz-etal-2018-amr} this lexicalization step is performed by a Long short-term memory (LSTM) \parencite{LSTM} model. In the field of natural language processing, LSTMs have been supplanted by more recent models (discussed in the literature review below), which gain a more fine grained insight into language by being trained on large corpora of text before being fine-tuned to fit a specific task. Replacing the original lexicalization model(which performed below expectation on this task) by a fine-tuned modern language model could elevate the performance of the entire parser. 
+
+\subsection{Academic relevance}
+This thesis is located within the discipline of natural language processing, a sub-field of artificial intelligence. AMR parsing is a process of interfacing between natural language and a semantic representation that is readable to both people and computers. Such meaning representations could for instance allow us to create knowledge banks based on natural language input, that could be used for to perform inference on.
+
+\section{Background}
+
+\subsection{AMR format}
+Abstract meaning representation \parencite{banarescu-etal-2013-abstract} is a formalism that attempts to capture the semantics of a natural language sentence in a graph based format. AMRs are rooted, directed, node-labeled and edge-labeled graphs. The nodes of these graphs represent the core concepts in the sentence, the edges convey how these concepts are related. The labels of nodes representing nouns are variables, often named after the object they represent, in the example below, the node representing "orca" is represented as "orca". Predicates are represented using Ontonotes \parencite{hovy-etal-2006-ontonotes}, which disambiguates predicates by asigning every sense of a word a different number: grill-01 refers to the act of cooking on an open fire, grill-02 refers to an interrogation. Names, dates and numbers have their own respective formats. 
+AMRs can also be represented as a conjunction of logical propositions
+
+\subsection{AM-parser}
+The AM-parser \parencite{groschwitz-etal-2018-amr} is a parser that converts a natural language sentence to its corresponding AMR graph, using the AM-algebra developed by \textcite{GroschwitzThesis}. 
+\subsubsection{AM-algebra}
+The AM-algebra is an algebra The smallest possible term in the AM algebra are annotated s-graphs (or: AS-graphs), which convey the meaning of \textit{one} core concept through giving what the sense of the word is, and to which \textit{sources}, i.e. types of words it could be related to in which way. These AS-graphs can be combined in two different ways: \textit{application} and \textit{modification}. Whether two graphs can combine is determined by a type system. Application fills in the argument of a given predicate, modification adds a modifier to a given graph. In both operations, if the two terms that are being combined share a source $s$, the nodes marked with $s$ are unified with eachother. 
+\subsubsection{Supertagger}
+\subsubsection{Architecture}
+Because this problem is NP-complete, ... there are two parsers ... same results ... this thesis uses the following parser, based on the fact that this one has been shown to work. ???
+\subsubsection{lexicalization}
+
+\subsection{Long short-term memory}
+\subsection{pre-trained sequence-to-sequence language models}
+The transformer architecture \parencite{DBLP:journals/corr/VaswaniSPUJGKP17} made it possible for language models to be trained in parallel, rather than token-for-token as in LSTMs. This, combined with the ease of scalability of these models allowed for transformer-based models to be trained on much larger data-sets compared to previous methods. This inspired researchers to apply transfer-learning techniques that had previously been successful in the field of computer vision \parencite{DBLP:journals/corr/YosinskiCBL14} to language models. Instead of training a new model for every task, researchers trained \textit{one} model on vast amounts of data. This model thereby gained insight into the workings of language, which can be leveraged by further training this model on a specific task (fine-tuning). Because the pre-trained model retains its understanding of language from the pre-training step, the fine-tuning can be performed on a much smaller database, in less time and with better results compared to training a model specially for the task at hand [citation needed]. Examples of these kind of models are BART, BERT and GPT. \parencite{DBLP:journals/corr/abs-1910-13461, BERT, Radford2019LanguageMA}.
+For this thesis,
+\subsubsection{BART}
+BART \parencite{BART} is a sequence-to-sequence model based on a bidirectional encoder trained on the task of reconstructing a corrupted text. The text corruptions BART is trained on consist of the masking of random singular tokens, the deletion of random tokens, the random masking of multiple contiguous tokens, the shuffling around of random tokens within a sentence and rotating the starting token of a text. 
+\subsubsection{T5}
+
+\section{Methodology}
+\subsection{Model}
+\subsection{fine-tuning}
+\subsubsection{Data}
+The training data is from the same training data that the original model was evaluated on. "$LEMMA-xx$ tags have been replaced by the input word with the number left attached" 
+\subsection{Evaluation}
+The model will be evaluated using the commonly used the Smatch evaluation metric \parencite{cai-knight-2013-smatch}, as well as the more fine grained GrAPES evaluation suite \parencite{GrAPES}. These results will be compared to the results obtained by \textcite{GrAPES}.
+\subsection{Smatch}
+Smatch measures the degree of overlap between two AMRs. Because the names of AMR variables can be chosen freely , it is not straightforward to compare variables on their given names. When presented with these AMRs in logical form:
+
+$$AAAAAAAAAAAAAAAAAAAAA$$
+
+it is not clear if parser 1 intended for $x$ to refer to what parser two calls "John", and $y$ to "Sue". Therefore, Smatch compares possible assignments and returns the F-score of the best possible overlap it is able to find. 
+Here, Smatch will be used to evaluate the AMRs made by the parser against annotated gold-standard test data. [WELKE DATA]
+
+\subsection{GrAPES}
+GrAPES is a more fine grained evaluation suite that has been devised to allow for focus on important linguistic features that Smatch cannot adequately find. Because 
+
+\section{Results}
+\subsection{SMATCH}
+\subsection{GrAPES}
+\section{Discussion}
+\subsection{Further research}
+As the original model already creates words embeddings through a modern language model (namely BERT),
+
+\printbibliography
+
+\end{document}
